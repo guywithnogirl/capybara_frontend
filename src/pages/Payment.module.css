@@ -1,0 +1,16 @@
+@import './Checkout.css';
+.express-checkout { margin-bottom: 24px; }
+.express-checkout h3 { font-size: 1rem; font-weight: 600; margin-bottom: 14px; }
+.express-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.apple-pay { background: #000; color: #fff; padding: 14px; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; }
+.google-pay { background: #fff; color: #4285F4; border: 2px solid var(--border); padding: 14px; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; }
+.google-pay span { color: #EA4335; }
+.or-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+.or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.or-divider span { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; letter-spacing: 1px; }
+.card-number-group { position: relative; }
+.card-icon { position: absolute; right: 14px; top: 38px; font-size: 1.1rem; }
+.save-card { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; color: var(--text-secondary); cursor: pointer; margin-bottom: 20px; }
+.secure-badge { text-align: center; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 20px; }
+.complete-btn { width: 100%; justify-content: center; padding: 14px; font-size: 1rem; }
+.complete-btn:disabled { opacity: 0.7; cursor: not-allowed; }

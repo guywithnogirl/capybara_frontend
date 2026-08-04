@@ -1,0 +1,25 @@
+.order-success { padding-bottom: 60px; }
+.success-hero { text-align: center; padding: 60px 24px 40px; background: var(--bg-secondary); }
+.success-icon { font-size: 4rem; margin-bottom: 20px; }
+.success-hero h1 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 16px; }
+.success-hero p { color: var(--text-muted); max-width: 560px; margin: 0 auto 28px; line-height: 1.7; }
+.order-info-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.info-badge { background: #fff; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 16px 28px; text-align: center; }
+.info-badge small { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; }
+.info-badge strong { font-size: 1.1rem; color: var(--primary); }
+.success-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; margin-top: 32px; }
+.card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 24px; }
+.success-summary h2 { font-size: 1.1rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.success-summary h2 span { font-size: 0.875rem; font-weight: 400; color: var(--text-muted); }
+.success-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-light); }
+.success-item img { width: 60px; height: 74px; object-fit: cover; border-radius: var(--radius-sm); flex-shrink: 0; }
+.success-item > div { flex: 1; }
+.success-item p { font-size: 0.875rem; font-weight: 600; }
+.success-item small { font-size: 0.78rem; color: var(--text-muted); }
+.success-item > span { text-align: right; font-weight: 600; color: var(--primary); font-size: 0.9rem; }
+.success-shipping { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; border: 1px solid var(--border-light) !important; }
+.success-shipping h3 { font-size: 0.875rem; font-weight: 700; margin-bottom: 10px; }
+.success-shipping p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+.success-price h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+.eco-note { margin-top: 16px; padding: 12px; background: #F1F8E9; border-radius: var(--radius-sm); font-size: 0.78rem; color: #33691E; }
+@media (max-width: 768px) { .success-layout { grid-template-columns: 1fr; } .success-shipping { grid-template-columns: 1fr; } }
