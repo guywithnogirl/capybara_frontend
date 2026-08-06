@@ -26,7 +26,7 @@ export default function Account() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) { navigate('/login'); return; }
+    if (!isAuthenticated) {  return ; }
     const fetchData = async () => {
       try {
         const [ordersRes, productsRes] = await Promise.all([

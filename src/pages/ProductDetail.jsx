@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { getProductBySlug, getProducts } from '../services/productService';
 import { getProductReviews, createReview, updateReview, deleteReview } from '../services/reviewService';
+import {addToWishlist} from '../services/wishlistService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import StarRating from '../components/StarRating';
@@ -178,6 +179,36 @@ export default function ProductDetail() {
     }
   };
 
+  const handleAddToWishlist = async () => {
+  if (!selColor) {
+    toast.error('Please select a color');
+    return;
+  }
+
+  if (!selSize) {
+    toast.error('Please select a size');
+    return;
+  }
+
+  if (!selectedVariant) {
+    toast.error('Selected combination not available');
+    return;
+  }
+
+  if (!isAuthenticated) {
+    toast.error('Please login to add to wishlist');
+    navigate('/login');
+    return;
+  }
+
+  try {
+    await addToWishlist(selectedVariant.id);
+    toast.success('Added to wishlist ❤️');
+  } catch (err) {
+    toast.error(err.response?.data?.detail || 'Failed to add to wishlist');
+  }
+  };
+
   return (
     <div className={styles['product-detail']}>
       <div className="container">
@@ -272,6 +303,10 @@ export default function ProductDetail() {
               <button className={`btn-accent ${styles['pd-buy']}`} onClick={handleBuyNow}>
                 Buy Now
               </button>
+              {/* Wishlist */}
+              <button className={`btn-secondary ${styles['pd-whishlist']}`}onClick={handleAddToWishlist}>
+                ❤ Add to Wishlist
+              </button>
             </div>
 
             <div className={styles['pd-badges-row']}>
@@ -332,7 +367,7 @@ export default function ProductDetail() {
                     ))}
                   </div>
                   <textarea value={reviewComment} onChange={e => setReviewComment(e.target.value)}
-                    placeholder="Share your experience..." rows={3}
+                    placeholder="Share your experience ..." rows={3}
                     style={{ width: '100%', padding: '12px', border: '1.5px solid var(--border)', borderRadius: 'var(--radius-sm)', fontFamily: 'inherit', fontSize: '0.9rem', resize: 'vertical' }} />
                   <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                     <button type="submit" className="btn-primary" style={{ padding: '10px 20px' }}>
