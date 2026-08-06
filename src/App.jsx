@@ -25,7 +25,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 import { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function Layout({ children }) {
   return (
