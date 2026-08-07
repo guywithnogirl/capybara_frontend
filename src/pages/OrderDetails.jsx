@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getOrderDetail, cancelOrder } from '../services/orderService';
 import Spinner from '../components/Spinner';
 import toast from 'react-hot-toast';
+import Return from '../components/Return';
 
 const TIMELINE = ['PENDING', 'CONFIRMED', 'PACKED', 'SHIPPED', 'DELIVERED'];
 const TIMELINE_LABELS = { PENDING: 'Order Placed', CONFIRMED: 'Confirmed', PACKED: 'Packed', SHIPPED: 'Shipped', DELIVERED: 'Delivered' };
@@ -12,6 +13,8 @@ export default function OrderDetails() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [cancelling, setCancelling] = useState(false);
+  const [showReturnModal, setShowReturnModal] = useState(false);
+
 
   useEffect(() => {
     getOrderDetail(id)
@@ -31,7 +34,7 @@ export default function OrderDetails() {
 
   const statusIdx = TIMELINE.indexOf(order.status);
   const canCancel = ['PENDING', 'CONFIRMED', 'PACKED'].includes(order.status);
-
+  
   const handleCancel = async () => {
     if (!confirm('Are you sure you want to cancel this order?')) return;
     setCancelling(true);
@@ -45,6 +48,11 @@ export default function OrderDetails() {
       setCancelling(false);
     }
   };
+  const handleReturn = () => {
+    // Implement return order logic here
+    // toast('Return order functionality is not implemented yet.');
+    setShowReturnModal(true);
+  }
 
   return (
     <div>
@@ -58,6 +66,11 @@ export default function OrderDetails() {
           {canCancel && (
             <button className="btn-secondary" style={{ padding: '8px 16px', fontSize: '0.85rem' }} onClick={handleCancel} disabled={cancelling}>
               {cancelling ? 'Cancelling...' : '✕ Cancel Order'}
+            </button>
+          )}
+          {order.status === 'DELIVERED' && (
+            <button className="btn-secondary" style={{ padding: '8px 16px', fontSize: '0.85rem' }} onClick={handleReturn}>
+              {' Return Order'}
             </button>
           )}
         </div>
@@ -95,6 +108,11 @@ export default function OrderDetails() {
             </div>
           </div>
         </div>
+        <Return
+  isOpen={showReturnModal}
+  onClose={() => setShowReturnModal(false)}
+  orderNumber={order.order_number}
+/>
         {/* Right Panel */}
         <div>
           {/* Order Status */}
