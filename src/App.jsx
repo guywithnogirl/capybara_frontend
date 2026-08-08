@@ -23,6 +23,8 @@ import Wishlist from './pages/Wishlist';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 import { Toaster } from 'react-hot-toast';
 
@@ -78,6 +80,8 @@ export default function App() {
               {/* Authentication */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password/:uid/:token"element={<ResetPassword />}/>
 
               {/* Public Pages */}
               <Route path="/" element={<Layout><Home /></Layout>} />

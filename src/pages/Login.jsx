@@ -68,6 +68,9 @@ export default function Login() {
           <button type="submit" className={`btn-primary ${styles['login-btn']}`} disabled={submitting}>
             {submitting ? 'Logging in...' : 'Login to My Account →'}
           </button>
+          <Link to="/forgot-password">
+            Forgot Password?
+          </Link>
         </form>
         <p style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.875rem', color: 'var(--text-muted)' }}>
           Don't have an account? <Link to="/register" className={styles['forgot-link']}>Create an account</Link>
