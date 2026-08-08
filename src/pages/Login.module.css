@@ -12,10 +12,11 @@
 .divider span { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
 .input-icon-wrap { position: relative; display: flex; align-items: center; }
 .input-icon-wrap span:first-child { position: absolute; left: 14px; font-size: 1rem; }
-.input-icon-wrap input { padding-left: 44px; width: 100%; }
+.input-icon-wrap input { width: 100%; }
 .show-pass { position: absolute; right: 14px; background: none; font-size: 1rem; }
 .remember-label { display: flex; align-items: center; gap: 10px; font-size: 0.875rem; color: var(--text-secondary); cursor: pointer; margin-bottom: 20px; }
-.login-btn { width: 100%; justify-content: center; padding: 14px; font-size: 0.95rem; }
+.login-btn { width: 100%; justify-content: center; margin-top: 10px; padding: 14px; font-size: 0.95rem; }
+.forgot-txt{ text-align: center; margin-top: 16px; font-size: 0.875rem; color: var(--text-muted); }
 .forgot-link { color: var(--accent); font-size: 0.875rem; font-weight: 500; }
 .forgot-link:hover { text-decoration: underline; }
 .error-msg { background: #FFEBEE; color: var(--error); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.875rem; margin-bottom: 16px; }

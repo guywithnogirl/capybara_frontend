@@ -37,12 +37,10 @@ export default function Login() {
         <div className={styles.divider}><span>LOGIN WITH EMAIL</span></div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Email Address</label>
             <div className={styles['input-icon-wrap']}>
-              <span>✉️</span>
               <input
                 type="email"
-                placeholder="name@example.com"
+                placeholder="Email Address"
                 {...rhfRegister('email', { required: 'Email is required' })}
               />
             </div>
@@ -50,13 +48,11 @@ export default function Login() {
           </div>
           <div className="form-group">
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <label>Password</label>
             </div>
             <div className={styles['input-icon-wrap']}>
-              <span>🔒</span>
               <input
                 type={showPass ? 'text' : 'password'}
-                placeholder="••••••••"
+                placeholder="Password"
                 {...rhfRegister('password', { required: 'Password is required' })}
               />
               <button type="button" className={styles['show-pass']} onClick={() => setShowPass(!showPass)}>
@@ -68,16 +64,14 @@ export default function Login() {
           <button type="submit" className={`btn-primary ${styles['login-btn']}`} disabled={submitting}>
             {submitting ? 'Logging in...' : 'Login to My Account →'}
           </button>
-          <Link to="/forgot-password">
-            Forgot Password?
-          </Link>
+          <p className={styles['forgot-txt']}>Forgot Password? <Link to="/forgot-password" className={styles['forgot-link']}>Click here</Link> to reset password.</p>
         </form>
         <p style={{ textAlign: 'center', marginTop: '16px', fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-          Don't have an account? <Link to="/register" className={styles['forgot-link']}>Create an account</Link>
+          Don't have an account? <Link to="/register" className={styles['forgot-link']}>Create an account.</Link>
         </p>
         <div className={styles['secure-note']}>🔒 100% Secure & Encrypted Connection</div>
       </div>
-      <p style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '24px' }}>© 2024 Capybara Baby Clothing. All rights reserved.</p>
+      <p style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '24px' }}>© 2026 Capybara Baby Clothing. All rights reserved.</p>
     </div>
   );
 }
