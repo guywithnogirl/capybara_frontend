@@ -63,37 +63,29 @@ export default function Home() {
       )}
 
       {/* Hero Banner */}
-      {heroBanner ? (
-        <section className={styles.hero}>
-          <div className={styles['hero-content']}>
-            {heroBanner.subtitle && <div className={styles['hero-badge']}>{heroBanner.subtitle}</div>}
-            <h1 className={styles['hero-title']}>{heroBanner.title}</h1>
-            <Link to={heroBanner.button_url || '/shop'} className={`btn-accent ${styles['hero-cta']}`}>
-              {heroBanner.button_text || 'SHOP NOW'}
-            </Link>
-          </div>
-          <div className={styles['hero-img-right']}>
-            <img src={heroBanner.image} alt={heroBanner.title} />
-          </div>
-        </section>
-      ) : (
-        <section className={styles.hero}>
-          <div className={styles['hero-content']}>
-            <div className={styles['hero-badge']}>🎉 BIG SALE IS LIVE</div>
-            <h1 className={styles['hero-title']}>Grand <em>Onam</em> Offer</h1>
-            <p className={styles['hero-subtitle']}><strong>EXTRA 40% OFF</strong><br />ON YOUR FAVORITE STYLES</p>
-            <Link to="/shop" className={`btn-accent ${styles['hero-cta']}`}>SHOP NOW</Link>
-          </div>
+      {heroBanner && (
+        <section className={styles['hero-banner']}>
+          <Link to={heroBanner.button_url || '/shop'}>
+            <img src={heroBanner.image} alt={heroBanner.title || 'Promotional Banner'} />
+          </Link>
         </section>
       )}
 
-      {/* Trust bar */}
+      {/* Trust bar — scrolling marquee on mobile */}
       <div className={styles['trust-bar']}>
-        <span>🚚 Free Shipping on orders above ₹999</span>
-        <span>🔄 Easy 10-day returns</span>
-        <span>⭐ Premium Quality — Trusted by 10,000+ customers</span>
-        <span>🔒 Secure Payments</span>
-        <span>📞 24/7 Support</span>
+        <div className={styles['trust-track']}>
+          <span>🚚 Free Shipping on orders above ₹999</span>
+          <span>🔄 Easy 10-day returns</span>
+          <span>⭐ Premium Quality — Trusted by 10,000+ customers</span>
+          <span>🔒 Secure Payments</span>
+          <span>📞 24/7 Support</span>
+          {/* Duplicate for seamless loop */}
+          <span>🚚 Free Shipping on orders above ₹999</span>
+          <span>🔄 Easy 10-day returns</span>
+          <span>⭐ Premium Quality — Trusted by 10,000+ customers</span>
+          <span>🔒 Secure Payments</span>
+          <span>📞 24/7 Support</span>
+        </div>
       </div>
 
       {/* Shop by Collection */}

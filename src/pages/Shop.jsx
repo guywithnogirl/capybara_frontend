@@ -19,6 +19,7 @@ export default function Shop() {
   const [categories, setCategories] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [filterOpen, setFilterOpen] = useState(false);
 
   const selCat = params.get('category__slug') || '';
   const searchQuery = params.get('search') || '';
@@ -88,6 +89,8 @@ export default function Shop() {
     r => String(r.min) === minPrice && (r.max === null ? !maxPrice : String(r.max) === maxPrice)
   )?.label || '';
 
+  const hasActiveFilters = selCat || selColor || selSize || minPrice || maxPrice;
+
   return (
     <div className={`${styles['shop-page']} container`}>
       <div className={styles['shop-header']}>
@@ -95,9 +98,50 @@ export default function Shop() {
         <h1>Shop All</h1>
         <p>Discover our curated collection of traditional Indian baby &amp; kids wear, designed for festive occasions and celebrations.</p>
       </div>
+
+      {/* Mobile filter toggle bar — only visible on small screens via CSS */}
+      <div className={styles['mobile-filter-bar']}>
+        <button
+          className={styles['filter-toggle-btn']}
+          onClick={() => setFilterOpen(!filterOpen)}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="16" y2="12" />
+            <line x1="4" y1="18" x2="12" y2="18" />
+          </svg>
+          Filters
+          {hasActiveFilters && <span className={styles['filter-badge']}>•</span>}
+        </button>
+        <div className={styles['sort-by-mobile']}>
+          <select value={sort} onChange={e => setFilter('ordering', e.target.value)}>
+            <option value="">Sort by</option>
+            <option value="price">Price: Low to High</option>
+            <option value="-price">Price: High to Low</option>
+            <option value="name">Name: A–Z</option>
+            <option value="-created_at">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Dark overlay behind filter drawer on mobile */}
+      {filterOpen && (
+        <div className={styles['filter-overlay']} onClick={() => setFilterOpen(false)} />
+      )}
+
       <div className={styles['shop-layout']}>
-        {/* Sidebar */}
-        <aside className={styles['shop-sidebar']}>
+        {/* Sidebar — hidden on mobile, shown as drawer when filterOpen */}
+        <aside className={`${styles['shop-sidebar']} ${filterOpen ? styles['sidebar-open'] : ''}`}>
+          {/* Header with close button — only visible on mobile via CSS */}
+          <div className={styles['sidebar-header']}>
+            <h2>Filters</h2>
+            <button className={styles['sidebar-close']} onClick={() => setFilterOpen(false)} aria-label="Close filters">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
           <div className={styles['filter-section']}>
             <h3>Categories</h3>
             <button
@@ -149,7 +193,26 @@ export default function Shop() {
               }}>Clear filter</button>
             )}
           </div>
+
+          {/* Apply / Clear buttons — only visible on mobile via CSS */}
+          <div className={styles['sidebar-actions']}>
+            {hasActiveFilters && (
+              <button className={styles['clear-all-btn']} onClick={() => {
+                const newParams = new URLSearchParams();
+                if (searchQuery) newParams.set('search', searchQuery);
+                newParams.set('page', '1');
+                setParams(newParams);
+                setFilterOpen(false);
+              }}>
+                Clear All
+              </button>
+            )}
+            <button className={`btn-accent ${styles['apply-btn']}`} onClick={() => setFilterOpen(false)}>
+              Apply Filters
+            </button>
+          </div>
         </aside>
+
         {/* Products */}
         <main className={styles['shop-products']}>
           <div className={styles['shop-toolbar']}>
