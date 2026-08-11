@@ -61,8 +61,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
+    console.log('Attempting login with email:', email);
     const data = await loginUser(email, password);
-    const userData = extractUser(data.access);
+    const userData = jwtDecode(data.access);
+    console.log('Decoded user data from token:', userData);
     setUser(userData);
     return data;
   };
@@ -71,7 +73,8 @@ export function AuthProvider({ children }) {
     await registerUser(formData);
     // Auto-login after registration
     const data = await loginUser(formData.email, formData.password);
-    const userData = extractUser(data.access);
+    const userData = jwtDecode(data.access);
+    console.log('Decoded user data from token after registration:', userData);
     setUser(userData);
     return data;
   };
