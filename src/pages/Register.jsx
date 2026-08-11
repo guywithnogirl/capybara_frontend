@@ -41,7 +41,7 @@ export default function Register() {
   return (
     <div className={styles['register-page']}>
       <header className={styles['register-header']}>
-        <Link to="/"><img src="/assets/logo.jpeg" alt="Capybara" style={{ height: '44px' }} /></Link>
+        <Link to="/"><img src="capy-logo-landscape.svg" alt="Capybara" style={{ height: '55px' }} /></Link>
         <Link to="/shop" className={styles['back-to-shop']}>Back to Shop</Link>
       </header>
       <div className={styles['register-layout']}>
@@ -49,63 +49,55 @@ export default function Register() {
         <div className={styles['register-left']}>
           <div className={styles['register-img-wrap']}>
             <img src="/assets/WhatsApp Image 2026-07-12 at 2.43.18 PM.jpeg" alt="Baby" />
-            <div className={styles['register-badge']}>❤️ <span><strong>10k+ Happy</strong><br />Parents Joined</span></div>
+            <div className={styles['register-badge']}><strong>10K+ Happy Parents Joined</strong></div>
           </div>
           <h2>The softest start for your little one.</h2>
           <p>Join a community dedicated to quality, comfort, and sustainable baby fashion.</p>
         </div>
         {/* Right side */}
+
         <div className={styles['register-card']}>
+          <div className={styles['capy-logo']}>
+                <img src="/main-logo.svg" alt="Capybara"/>
+        </div>
           <h1>Join the Capybara Family</h1>
           <p>Create your account in seconds</p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles['form-row']}>
               <div className="form-group">
-                <label>First Name</label>
                 <div className={styles['input-icon-wrap']}>
-                  <span>👤</span>
                   <input placeholder="First Name" {...rhfRegister('first_name', { required: 'Required' })} />
                 </div>
                 {errors.first_name && <small style={{ color: 'var(--error)' }}>{errors.first_name.message}</small>}
               </div>
               <div className="form-group">
-                <label>Last Name</label>
                 <div className={styles['input-icon-wrap']}>
-                  <span>👤</span>
                   <input placeholder="Last Name" {...rhfRegister('last_name', { required: 'Required' })} />
                 </div>
                 {errors.last_name && <small style={{ color: 'var(--error)' }}>{errors.last_name.message}</small>}
               </div>
             </div>
             <div className="form-group">
-              <label>Email Address</label>
               <div className={styles['input-icon-wrap']}>
-                <span>✉️</span>
-                <input type="email" placeholder="you@example.com" {...rhfRegister('email', { required: 'Email is required' })} />
+                <input type="email" placeholder="Email Address" {...rhfRegister('email', { required: 'Email is required' })} />
               </div>
               {errors.email && <small style={{ color: 'var(--error)' }}>{errors.email.message}</small>}
             </div>
             <div className="form-group">
-              <label>Phone Number</label>
               <div className={styles['input-icon-wrap']}>
-                <span>📞</span>
-                <input placeholder="+91 98765 43210" {...rhfRegister('phone_number')} />
+                <input placeholder="Mobile Number" {...rhfRegister('phone_number')} />
               </div>
             </div>
             <div className={styles['form-row']}>
               <div className="form-group">
-                <label>Password</label>
                 <div className={styles['input-icon-wrap']}>
-                  <span>🔒</span>
-                  <input type="password" placeholder="••••••••" {...rhfRegister('password', { required: 'Required', minLength: { value: 8, message: 'Min 8 characters' } })} />
+                  <input type="password" placeholder="Password" {...rhfRegister('password', { required: 'Required', minLength: { value: 8, message: 'Min 8 characters' } })} />
                 </div>
                 {errors.password && <small style={{ color: 'var(--error)' }}>{errors.password.message}</small>}
               </div>
               <div className="form-group">
-                <label>Confirm Password</label>
                 <div className={styles['input-icon-wrap']}>
-                  <span>🛡️</span>
-                  <input type="password" placeholder="••••••••" {...rhfRegister('confirm', { required: 'Required', validate: v => v === password || 'Passwords do not match' })} />
+                  <input type="password" placeholder="Confirm Password" {...rhfRegister('confirm', { required: 'Required', validate: v => v === password || 'Passwords do not match' })} />
                 </div>
                 {errors.confirm && <small style={{ color: 'var(--error)' }}>{errors.confirm.message}</small>}
               </div>
