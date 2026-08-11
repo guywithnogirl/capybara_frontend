@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { loginUser, registerUser, logoutUser } from '../services/authService';
-import { getAccessToken, getRefreshToken } from '../services/api';
+import { loginUser, registerUser, logoutUser, getCurrentUser } from '../services/authService';
+import { getAccessToken, getRefreshToken, clearTokens } from '../services/api';
 import { jwtDecode } from './jwtDecode';
+import api from '../services/api';
 
 const AuthContext = createContext();
 
@@ -9,31 +10,55 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Decode token to extract user info
-  const extractUser = useCallback((token) => {
-    try {
-      const payload = jwtDecode(token);
-      return {
-        id: payload.user_id,
-        email: payload.email || '',
-        name: payload.username || payload.email || '',
-      };
-    } catch {
-      return null;
-    }
-  }, []);
+  
 
+  // Decode token to extract user info
+  useEffect(() => {
+    const token = getAccessToken();
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    const loadUser = async () => {
+      try{
+        const  {data}  = await api.get('/accounts/me/');
+        console.log('Fetched current user:', data);
+        setUser({
+          id : data.id || '',
+          name: data.name || '',
+          email: data.email || '',
+          first_name: data.first_name || '',
+          last_name: data.last_name || '',
+        });
+      } catch (error) {
+        console.error('Failed to fetch current user:', error);
+        clearTokens();
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+  }, []);
   // On mount, check for existing token
   useEffect(() => {
     const token = getAccessToken();
-    if (token) {
-      const userData = extractUser(token);
-      if (userData) {
-        setUser(userData);
-      }
+    if (!token){
+      setLoading(false);
     }
-    setLoading(false);
-  }, [extractUser]);
+    const loadUser = async()=> {
+      try {
+        const userData = await getCurrentUser();
+        setUser(userData);
+      } catch (error) {
+        console.error('Failed to fetch current user:', error);
+        clearTokens();
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadUser();
+  }, []);
 
   const login = async (email, password) => {
     const data = await loginUser(email, password);

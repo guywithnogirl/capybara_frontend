@@ -29,7 +29,7 @@ export default function Login() {
   return (
     <div className={styles['login-page']}>
       <div className={styles['login-logo']}>
-        <img src="/assets/logo.jpeg" alt="Capybara" />
+        <img src="/main-logo.svg" alt="Capybara"/>
       </div>
       <div className={styles['login-card']}>
         <h1>Welcome Back</h1>
