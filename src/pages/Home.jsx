@@ -62,15 +62,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Hero Banner */}
-      {heroBanner && (
-        <section className={styles['hero-banner']}>
-          <Link to={heroBanner.button_url || '/shop'}>
-            <img src={heroBanner.image} alt={heroBanner.title || 'Promotional Banner'} />
-          </Link>
-        </section>
-      )}
-
       {/* Trust bar — scrolling marquee on mobile */}
       <div className={styles['trust-bar']}>
         <div className={styles['trust-track']}>
@@ -87,6 +78,16 @@ export default function Home() {
           <span>📞 24/7 Support</span>
         </div>
       </div>
+
+      {/* Hero Banner */}
+      {heroBanner && (
+        <section className={styles['hero-banner']}>
+          <Link to={heroBanner.button_url || '/shop'}>
+            <img src={heroBanner.image} alt={heroBanner.title || 'Promotional Banner'} />
+          </Link>
+        </section>
+      )}
+
 
       {/* Shop by Collection */}
       {categories.length > 0 && (
