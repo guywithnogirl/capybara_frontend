@@ -26,7 +26,7 @@ export default function Navbar() {
       </div>
       <div className={`${styles['navbar-main']} container`}>
         <Link to="/" className={styles['navbar-logo']}>
-          <img src="/assets/logo.jpeg" alt="Capybara Baby Clothing" />
+          <img src="capy-logo-landscape.svg" alt="Capybara Baby Clothing" />
         </Link>
         <nav className={`${styles['navbar-links']} ${menuOpen ? styles.open : ''}`}>
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
