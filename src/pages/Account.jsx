@@ -17,6 +17,7 @@ const navItems = [
 
 export default function Account() {
   const { user, logout, isAuthenticated } = useAuth();
+  console.log('User data in Account.jsx:', user); // Debugging line
   const { wishlist } = useWishlist();
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function Account() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {  return ; }
+    if (!isAuthenticated) { return; }
     const fetchData = async () => {
       try {
         const [ordersRes, productsRes] = await Promise.all([
@@ -54,9 +55,9 @@ export default function Account() {
         {/* Sidebar */}
         <aside className={styles['account-sidebar']}>
           <div className={styles['account-profile']}>
-            <div className={styles['account-avatar']}>{user?.name?.[0]?.toUpperCase() || '?'}</div>
+            <div className={styles['account-avatar']}>{user?.first_name?.[0]?.toUpperCase() || '?'}</div>
             <div>
-              <strong>{user?.name}</strong>
+              <strong>{user?.first_name}</strong>
               <p>{user?.email}</p>
             </div>
           </div>
