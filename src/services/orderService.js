@@ -33,3 +33,10 @@ export const createRazorpayOrder = async (order_id) => {
   const { data } = await api.post(`/orders/${order_id}/razorpay-order/`);
   return data;
 }
+
+export const verifyRazorpayPayment = async (order_id, paymentData) => {
+  const {data} = await api.post(`/orders/${order_id}/razorpay/verify/`,
+    paymentData
+  );
+  return data;
+}

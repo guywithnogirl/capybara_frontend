@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { getAddresses, createAddress } from '../services/addressService';
-import { createOrder, buyNow, createRazorpayOrder } from '../services/orderService';
+import { createOrder, buyNow, createRazorpayOrder, verifyRazorpayPayment } from '../services/orderService';
 import Spinner from '../components/Spinner';
 import toast from 'react-hot-toast';
 import styles from './Checkout.module.css';
@@ -72,8 +72,11 @@ export default function Checkout() {
         name: "Capybara",
         description: "Order Payment",
         order_id: razorpayOrder.razorpay_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
-        handler: function (response){
+        handler: async function (response){
           console.log('Payment successful:', response);
+          const verification = await verifyRazorpayPayment(order.id, response);
+          console.log('Payment verification:', verification);
+          navigate('/order-success', { state: { order } });
         },
         prefill: {
           name: "",
