@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { getAddresses, createAddress } from '../services/addressService';
-import { createOrder, buyNow } from '../services/orderService';
+import { createOrder, buyNow, createRazorpayOrder } from '../services/orderService';
 import Spinner from '../components/Spinner';
 import toast from 'react-hot-toast';
 import styles from './Checkout.module.css';
@@ -63,8 +63,10 @@ export default function Checkout() {
         clearCartLocal();
         fetchCart();
       }
-      toast.success('Order placed successfully!');
-      navigate('/order-success', { state: { order } });
+      const razorpayOrder = await createRazorpayOrder(order.id);
+      console.log('Razorpay Order:', razorpayOrder);
+      // toast.success('Order placed successfully!');
+      // navigate('/order-success', { state: { order } });
     } catch (err) {
       const msg = err.response?.data?.detail || 'Failed to place order';
       toast.error(msg);

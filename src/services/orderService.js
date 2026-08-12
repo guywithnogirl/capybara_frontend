@@ -28,3 +28,8 @@ export const cancelOrder = async (pk) => {
   const { data } = await api.patch(`/orders/${pk}/cancel/`);
   return data;
 };
+
+export const createRazorpayOrder = async (order_id) => {
+  const { data } = await api.post(`/orders/${order_id}/razorpay-order/`);
+  return data;
+}
