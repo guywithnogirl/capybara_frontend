@@ -65,6 +65,28 @@ export default function Checkout() {
       }
       const razorpayOrder = await createRazorpayOrder(order.id);
       console.log('Razorpay Order:', razorpayOrder);
+      const options = {
+        key: razorpayOrder.key_id, // Enter the Key ID generated from the Dashboard
+        amount: razorpayOrder.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: razorpayOrder.currency,
+        name: "Capybara",
+        description: "Order Payment",
+        order_id: razorpayOrder.razorpay_order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
+        handler: function (response){
+          console.log('Payment successful:', response);
+        },
+        prefill: {
+          name: "",
+          email: "",
+          contact: ""
+
+        },
+        theme: {
+          color: "#3399cc"
+        },
+      };
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
       // toast.success('Order placed successfully!');
       // navigate('/order-success', { state: { order } });
     } catch (err) {
