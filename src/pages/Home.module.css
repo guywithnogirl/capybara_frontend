@@ -41,7 +41,8 @@
   scroll-snap-type: x proximity;
 }
 .categories::-webkit-scrollbar {
-  height: 8px;
+  /* height: 8px; */
+  display:none;
 }
 .cat-circle {
   display: flex;
@@ -110,7 +111,8 @@
   -webkit-overflow-scrolling: touch;
 }
 .collections-grid::-webkit-scrollbar {
-  height: 8px;
+  /* height: 8px; */
+  display:none;
 }
 .collection-card {
   position: relative;

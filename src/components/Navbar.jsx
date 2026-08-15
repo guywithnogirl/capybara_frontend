@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -18,9 +18,33 @@ export default function Navbar() {
     e.preventDefault();
     if (searchQuery.trim()) { navigate(`/shop?search=${searchQuery}`); setSearchOpen(false); setSearchQuery(''); }
   };
+  const [navbarVisible, setNavbarVisible] = useState(true);
+  useEffect(() => {
+  let lastScrollY = window.scrollY;
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY <= 10) {
+      setNavbarVisible(true);
+    } else if (currentScrollY > lastScrollY) {
+      setNavbarVisible(false);
+    } else {
+      setNavbarVisible(true);
+    }
+
+    lastScrollY = currentScrollY;
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, []);
 
   return (
-    <header className={styles.navbar}>
+    <header className={`${styles.navbar} ${navbarVisible ? styles.navbarVisible : styles.navbarHidden}`}>
       <div className={styles['navbar-top']}>
         <span>🎉 Free Shipping on orders above ₹999 | Easy 10-day returns</span>
       </div>
