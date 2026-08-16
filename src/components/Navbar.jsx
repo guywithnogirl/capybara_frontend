@@ -46,7 +46,14 @@ export default function Navbar() {
   return (
     <header className={`${styles.navbar} ${navbarVisible ? styles.navbarVisible : styles.navbarHidden}`}>
       <div className={styles['navbar-top']}>
-        <span>🎉 Free Shipping on orders above ₹999 | Easy 10-day returns</span>
+        <span> </span>
+        <a href="">Shipping Charges</a>
+         <span> </span>
+        <a href="">Cancellation</a>
+        <a href="">Reviews</a>
+        <a href="">FAQs</a>
+        <a href="">Brand Story</a>
+        <a href="">Contact Us</a>
       </div>
       <div className={`${styles['navbar-main']} container`}>
         <Link to="/" className={styles['navbar-logo']}>

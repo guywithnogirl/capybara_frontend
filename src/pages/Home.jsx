@@ -48,21 +48,8 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      {/* Category Circles */}
-      {categories.length > 0 && (
-        <section className={`${styles.categories} container`}>
-          {categories.map(c => (
-            <Link to={`/shop?category__slug=${c.slug}`} key={c.id} className={styles['cat-circle']}>
-              <div className={styles['cat-circle-img']}>
-                {c.image && <img src={c.image} alt={c.name} />}
-              </div>
-              <span>{c.name}</span>
-            </Link>
-          ))}
-        </section>
-      )}
 
-      {/* Trust bar — scrolling marquee on mobile */}
+    {/* Trust bar — scrolling marquee on mobile */}
       <div className={styles['trust-bar']}>
         <div className={styles['trust-track']}>
           <span>🚚 Free Shipping on orders above ₹999</span>
@@ -78,6 +65,21 @@ export default function Home() {
           <span>📞 24/7 Support</span>
         </div>
       </div>
+
+      {/* Category Circles */}
+      {categories.length > 0 && (
+        <section className={`${styles.categories} container`}>
+          {categories.map(c => (
+            <Link to={`/shop?category__slug=${c.slug}`} key={c.id} className={styles['cat-circle']}>
+              <div className={styles['cat-circle-img']}>
+                {c.image && <img src={c.image} alt={c.name} />}
+              </div>
+              <span>{c.name}</span>
+            </Link>
+          ))}
+        </section>
+      )}
+
 
       {/* Hero Banner */}
       {heroBanner && (
