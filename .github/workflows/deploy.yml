@@ -30,7 +30,7 @@ jobs:
             
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::067712566220:role/deployreacttoggyr
+          role-to-assume: arn:aws:iam::103533473557:role/capybara-deploys3
           aws-region: eu-north-1
 
       - run: aws s3 sync dist/ s3://capybara-frontend --delete
