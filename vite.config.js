@@ -11,11 +11,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://jitthu.duckdns.org',
+        target: 'https://api.capybarababy.com',
         changeOrigin: true,
       },
       '/media': {
-        target: 'https://jitthu.duckdns.org',
+        target: 'https://api.capybarababy.com',
         changeOrigin: true,
       },
     },
